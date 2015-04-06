@@ -133,10 +133,9 @@ public class GetCookbookData {
 					String img;
 					JSONObject JSONObjectStep = (JSONObject) jsonArraySteps.get(j);
 					//去掉地址中的转义符号\
-					img = JSONObjectStep.getString("img").replace("\\" , "");
-					cookbook.step.add(img);		
+//					img = JSONObjectStep.getString("img").replace("\\" , "");
+//					cookbook.step.add(img);		
 					cookbook.step.add(JSONObjectStep.getString("step"));
-					System.out.println(img);
 				}
 				listCookbook.add(cookbook);
 			}

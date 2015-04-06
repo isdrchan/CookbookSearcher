@@ -13,21 +13,16 @@
   <style>
   </style>
 </head>
-<script type="text/javascript">
-function appendDetail(title, albums, tags, imtro, ingredients, burden, step){
-	$("#sectionId").append('<dl class="am-accordion-item"><dt class="am-accordion-title">' + title +'</dt><dd class="am-accordion-bd am-collapse"><div class="am-accordion-content"><center><img src="' + albums + '" /></center><strong>标签：</strong>' + tags + '<br/><strong>介绍：</strong>' + imtro + '<br/><strong>主要材料：</strong>' + ingredients + '<br/><strong>配料：</strong>' + burden + '<br/><strong>步骤：</strong>' + step + '<br/></div></dd></dl>');
-}
-</script>
 <body>
 <!-- Header -->
-<header data-am-widget="header" class="am-header am-header-default">
+<header data-am-widget="header" class="am-header am-header-default am-header-fixed">
   <div class="am-header-left am-header-nav">
     <a href="#left-link" class="">
       <i class="am-header-icon am-icon-angle-left"></i>
     </a>
   </div>
   <h1 class="am-header-title">
-    <a href="#title-link" class="">Welcome</a>
+    <a href="#title-link" id="title" class="">Welcome</a>
   </h1>
   <div class="am-header-right am-header-nav">
     <a href="#right-link" class="">
@@ -38,22 +33,21 @@ function appendDetail(title, albums, tags, imtro, ingredients, burden, step){
 
 
 <section id="sectionId" data-am-widget="accordion" class="am-accordion am-accordion-default"
-data-am-accordion='{ "multiple": true }'>
-  <dl class="am-accordion-item am-active">
-    <dt class="am-accordion-title">就这样恣意的活着</dt>
-    <dd class="am-accordion-bd am-collapse am-in">
-      <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
-      <div class="am-accordion-content">置身人群中
-        <br/>你只需要被淹没 享受 沉默
-        <br/>退到人群后
-        <br/>你只需给予双手 微笑 等候</div>
-    </dd>
-  </dl>
+data-am-accordion=''>
+  
 </section>
 
 <div style="height:30px;"></div>
 
 <script src="file:///android_asset/js/jquery.min.js"></script>
 <script src="file:///android_asset/js/amazeui.min.js"></script>
+<script type="text/javascript">
+function appendDetail(title, albums, tags, imtro, ingredients, burden, step){
+	$("#sectionId").append('<dl class="am-accordion-item"><dt class="am-accordion-title">' + title +'</dt><dd class="am-accordion-bd am-collapse"><div class="am-accordion-content"><center><img src="' + albums + '" /></center><hr><code>标签</code>' + tags + '<br/><hr><code>简介</code>' + imtro + '<br/><hr><code>材料</code>' + ingredients + '<br/><hr><code>配料</code>' + burden + '<br/><hr><code>步骤</code>' + step + '<br/></div></dd></dl>');
+}
+function resultCount(num) {
+	$("#title").text('共找到'+ num + '条菜谱');
+}
+</script>
 </body>
 </html>

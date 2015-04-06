@@ -97,12 +97,26 @@ public class DetailActivity extends Activity {
 		 	@Override
 		 	public void onPageFinished(WebView view, String url) {
 		 		super.onPageFinished(view, url);
-		 		//解析
-		 		for(int i = 0; i < listCookbook.size(); i++) {
+		 		
+		 		int count = 0;
+		 		//解析arrylist调用js的方法将数据append到html中
+		 		for(int i = 0; i < listCookbook.size(); i++, count++) {
+		 			StringBuffer sb = new StringBuffer("<br/>");
 		 			Cookbook cookbook = (Cookbook) listCookbook.get(i);
-		 			webview.loadUrl("javascript:appendDetail('" + cookbook.title + "','" + cookbook.albums + "','" + cookbook.tags + "','" + cookbook.imtro + "','" + cookbook.ingredients + "','" + cookbook.burden + "','" + "666" + "')");
+		 			for(int j = 0; j < cookbook.step.size(); j++) {
+		 				sb.append(((String) (cookbook.step.get(j))) + "<br/>");
+		 			}
+		 			webview.loadUrl("javascript:appendDetail('" + cookbook.title + "','" + cookbook.albums + "','" + cookbook.tags + "','" + cookbook.imtro + "','" + cookbook.ingredients + "','" + cookbook.burden + "','" + sb.toString() + "')");
 		 		}
-		 		  
+		 		webview.loadUrl("javascript:resultCount('" + count + "')");
+		 		
+		 		//动态加载js
+		 		String js = "var newscript = document.createElement(\"script\");";
+		 		js += "newscript.src=\"file:///android_asset/js/amazeui.min.js\";";
+		 		js += "document.body.appendChild(newscript);";
+		 		webview.loadUrl("javascript:" + js);
 		 	}
 	 }
 }
+
+
